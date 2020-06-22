@@ -38,7 +38,7 @@ public:
                 }
             }
         }
-        return steps;
+        return -1;
     }
 };
 // @lc code=end

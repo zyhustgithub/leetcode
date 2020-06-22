@@ -18,13 +18,14 @@ bool Cmp(list<string> &a, list<string> &b)
     if (a.size() != b.size()) {
         return a.size() > b.size();
     } else {
-        auto ita = a.begin();
-        auto itb = b.begin();
-        for (; ita != a.end(); ++ita, ++itb) {
-            if (*ita != *itb) {
-                return *ita < *itb;
-            }
-        }
+        return a < b;
+        // auto ita = a.begin();
+        // auto itb = b.begin();
+        // for (; ita != a.end(); ++ita, ++itb) {
+        //     if (*ita != *itb) {
+        //         return *ita < *itb;
+        //     }
+        // }
     }
     return false;
 }
