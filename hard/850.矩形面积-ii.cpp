@@ -72,6 +72,7 @@ constexpr int MOD_NUM = 1000000007;
 //     }
 // };
 
+// 扫描线算法
 struct Node {
     int y;
     bool op;
@@ -127,5 +128,74 @@ private:
     set<Node> lines;
     multiset<pair<int, int>> seen;
 };
-// @lc code=end
 
+// 线段树算法
+// class Solution {
+// public:
+//     int rectangleArea(vector<vector<int>>& rectangles) {
+//         for (auto &rec : rectangles) {
+//             lines.insert({rec[1], 1, rec[0], rec[2]});
+//             lines.insert({rec[3], -1, rec[0], rec[2]});
+//             xSet.insert(rec[0]);
+//             xSet.insert(rec[2]);
+//         }
+
+//         // 状态压缩
+//         int pos = 0;
+//         for (auto val : xSet) {
+//             if (xIdx.count(val) == 0) {
+//                 xIdx[val] = pos;
+//             }
+//             xVal[pos] = val;
+//             ++pos;
+//         }
+
+//         int curY = lines.begin()->y;
+//         uint64_t ans = 0;
+//         for (auto &line : lines) {
+//             // cout << xIdx[line.x1] << " " << xIdx[line.x2] - 1 << endl;
+//             ans = (ans + (uint64_t)sum[1] * (line.y - curY)) % MOD_NUM;
+//             Update(0, xSet.size() - 1, xIdx[line.x1], xIdx[line.x2] - 1, 1, line.op); 
+//             curY = line.y;
+//         }
+
+//         return ans;
+//     }
+
+//     void PutVal(int l, int r, int idx)
+//     {
+//         if (cover[idx] > 0) {
+//             sum[idx] = xVal[r + 1] - xVal[l];
+//         } else if (l == r) {
+//             sum[idx] = 0;
+//         } else {
+//             sum[idx] = sum[idx << 1] + sum[(idx << 1) | 1];
+//         }
+//     }
+
+//     void Update(int L, int R, int x, int y, int rt, int v) {
+//         if(x <= L && R <= y) {
+//             cover[rt] += v;
+//             PutVal(L, R, rt);
+//             return;
+//         }
+//         int mid = (L + R) >> 1;
+//         if(x <= mid) {
+//             Update(L, mid, x, y, rt << 1, v);
+//         }
+//         if(mid < y) {
+//             Update(mid + 1, R, x, y, (rt << 1) | 1, v);
+//         }
+
+//         PutVal(L, R, rt);
+//     }
+
+// private:
+//     set<Node> lines;
+//     multiset<int> xSet;
+//     unordered_map<int, int> xIdx;
+//     unordered_map<int, int> xVal;
+//     unordered_map<int, int> sum;
+//     unordered_map<int, int> cover;
+// };
+// @lc code=end
